@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,8 +11,13 @@
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'passwords.css' %}">
 </head>
+
 <body>
+    {% include 'partials/_navbar.html' %}
     {% block content %}
     {% endblock %}
+    {% include 'partials/_footer.html' %}
+    
 </body>
+
 </html>
