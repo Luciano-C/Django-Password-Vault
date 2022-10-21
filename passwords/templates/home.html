@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="container py-5 text-center">
+    <div class="row">
+        <div class="col px-5 offset-3">
+            <section class="card card-body " style="width: 35rem;">
+                <h1 class="">Bienvenido a Password Vault!</h1>
+                <img src="{% static 'logo.png' %}" alt="...">
+                <p>Puedes confiarnos tus secretos, prometemos no decirle a nadie 😉</p>
+                <div class="text-center">
+                    <a class="btn btn-primary custom-button" href="#">
+                        Signin
+                    </a>
+                    <a class="btn btn-primary custom-button" href="#">
+                        Signup
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock %}
