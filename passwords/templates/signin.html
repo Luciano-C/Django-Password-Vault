@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<main>
+<main class="container">
     <div class="row">
         <section class="col-md-4 offset-md-4 mt-5">
             <form action="/signin/" method="POST" class="card card-body">
-                {% csrf_token %}
                 <h1 class="text-center">Signin</h1>
+                {% csrf_token %}
                 <div class="mb-3">
                     <label for="email">Email: </label>
                     <input type="email" name="email" class="form-control" placeholder="Write your email" id="email">
@@ -16,7 +16,7 @@
                     <input type="password" name="password" class="form-control" placeholder="Write your password"
                         id="password">
                 </div>
-                <button class="btn btn-primary">Sign in</button>
+                <button class="btn btn-primary w-100">Sign in</button>
             </form>
         </section>
     </div>

@@ -6,6 +6,7 @@ app_name = "passwords"
 
 urlpatterns = [
     path("", home, name="home"),
-    path("signin", signin, name="signin")
+    path("signin", signin, name="signin"),
+    path("signup", signup, name="signup")
     #path("<int:post_id>", post_detail, name="post_detail")
 ]

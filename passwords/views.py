@@ -7,3 +7,7 @@ def home(request):
 def signin(request):
     if request.method == "GET":
         return render(request, 'signin.html')
+
+def signup(request):
+    if request.method == "GET":
+        return render(request, 'signup.html')
