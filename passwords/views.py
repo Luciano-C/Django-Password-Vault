@@ -54,5 +54,8 @@ def signout(request):
 def passwords(request):
     user_passwords = PasswordInfo.objects.filter(user=request.user)
     return render(request, 'passwords.html', {
-        'user_passwords': user_passwords
+            'user_passwords': user_passwords,
     })
+
+    
+
