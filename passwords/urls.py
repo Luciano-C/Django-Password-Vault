@@ -10,5 +10,7 @@ urlpatterns = [
     path("signin/", signin, name="signin"),
     path("signup/", signup, name="signup"),
     path("signout/", signout, name="signout"),
-    path("passwords/", passwords, name="passwords")
+    path("passwords/", passwords, name="passwords"),
+    path("passwords/<int:password_id>", password_detail, name="password_detail"),
+    path("passwords/<int:password_id>/delete", delete_password, name="delete_password")
 ]

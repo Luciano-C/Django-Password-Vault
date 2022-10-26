@@ -1,9 +1,11 @@
+from webbrowser import get
 from django.db import IntegrityError
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from authuser.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import *
+from .forms import PasswordForm
 
 # Create your views here.
 def home(request):
@@ -57,5 +59,46 @@ def passwords(request):
             'user_passwords': user_passwords,
     })
 
-    
+@login_required
+def password_detail(request, password_id):
+    if request.method == "GET":
+        password = get_object_or_404(PasswordInfo, pk=password_id, user=request.user)
+        form = PasswordForm(instance=password)
+        return render(request, 'password_detail.html', {
+            'password': password,
+            'form': form
+        })
+    else:
+        try:
+            password = get_object_or_404(PasswordInfo, pk=password_id, user=request.user)
+            form = PasswordForm(request.POST, instance=password)
+            form.save()
+            return redirect('passwords')
+        except ValueError:
+            return render(request, 'password_detail.html', {
+            'password': password,
+            'form': form,
+            'error': "Error updating password"
+        }) 
 
+""" @login_required
+def edit_password(request, password_id):
+    
+        try:
+            password = get_object_or_404(PasswordInfo, pk=password_id, user=request.user)
+            form = PasswordForm(request.POST, instance=password)
+            form.save()
+            return redirect('passwords')
+        except ValueError:
+            return render(request, 'password_detail.html', {
+            'password': password,
+            'form': form,
+            'error': "Error updating password"
+        }) """
+    
+@login_required
+def delete_password(request, password_id):
+    password = get_object_or_404(PasswordInfo, pk=password_id, user=request.user)
+    if request.method == "POST":
+        password.delete()
+        return redirect('passwords')
