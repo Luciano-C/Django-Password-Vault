@@ -81,24 +81,29 @@ def password_detail(request, password_id):
             'error': "Error updating password"
         }) 
 
-""" @login_required
-def edit_password(request, password_id):
-    
-        try:
-            password = get_object_or_404(PasswordInfo, pk=password_id, user=request.user)
-            form = PasswordForm(request.POST, instance=password)
-            form.save()
-            return redirect('passwords')
-        except ValueError:
-            return render(request, 'password_detail.html', {
-            'password': password,
-            'form': form,
-            'error': "Error updating password"
-        }) """
-    
+   
 @login_required
 def delete_password(request, password_id):
     password = get_object_or_404(PasswordInfo, pk=password_id, user=request.user)
     if request.method == "POST":
         password.delete()
         return redirect('passwords')
+
+@login_required
+def create_password(request):
+    if request.method == "GET":
+        return render(request, 'create_password.html', {
+            'form': PasswordForm
+        })
+    else:
+        try:
+            form = PasswordForm(request.POST)
+            new_password = form.save(commit=False)
+            new_password.user = request.user
+            new_password.save()
+            return redirect('passwords')
+        except ValueError:
+            return render(request, 'create_password.html', {
+                'form': PasswordForm,
+                'error': 'Invalid Data'
+            })

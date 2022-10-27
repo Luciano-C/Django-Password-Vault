@@ -16,3 +16,10 @@ class PasswordForm(forms.ModelForm):
         }
 
 
+class SearchByNameForm(forms.ModelForm):
+    class Meta():
+        model = PasswordInfo
+        fields = ["name"]
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "form-control mb-2", "placeholder": "Write a name"})
+        }

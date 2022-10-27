@@ -1,21 +1,16 @@
 const togglePassword = (id) => {
     targetInput = document.getElementById(`input${id}`)
+    targetEye = document.getElementById(`eye${id}`)
     if (targetInput.type === 'password') {
         targetInput.type = 'text';
+        targetEye.classList.add('fa-eye-slash')
+        targetEye.classList.remove('fa-eye')
     }
     else {
         targetInput.type = 'password';
+        targetEye.classList.add('fa-eye')
+        targetEye.classList.remove('fa-eye-slash')
     }
-}
 
-const toggleAll = () => {
-    inputs = document.getElementsByTagName('input');
-    for (input of inputs) {
-        if (input.type === 'password') {
-            input.type = 'text';
-        }
-        else {
-            input.type = 'password';
-        }
-    }
+
 }
