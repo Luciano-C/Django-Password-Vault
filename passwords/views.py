@@ -56,7 +56,7 @@ def signout(request):
 def passwords(request):
     user_passwords = PasswordInfo.objects.filter(user=request.user)
     return render(request, 'passwords.html', {
-            'user_passwords': user_passwords,
+            'user_passwords': user_passwords
     })
 
 @login_required
@@ -107,3 +107,25 @@ def create_password(request):
                 'form': PasswordForm,
                 'error': 'Invalid Data'
             })
+
+@login_required 
+def search_passwords_name(request):
+    if request.GET['search_by_name'] != "":
+        user_passwords = PasswordInfo.objects.filter(user=request.user).filter(name__contains=request.GET['search_by_name'])
+        return render(request, 'passwords.html', {
+            'user_passwords': user_passwords,
+            'value_name': request.GET['search_by_name']
+        })
+    else:
+        return redirect('passwords')
+
+@login_required 
+def search_passwords_type(request):
+    if request.GET['search_by_type'] != "":
+        user_passwords = PasswordInfo.objects.filter(user=request.user).filter(type_of_password__contains=request.GET['search_by_type'])
+        return render(request, 'passwords.html', {
+            'user_passwords': user_passwords,
+            'value_type': request.GET['search_by_type']
+        })
+    else:
+        return redirect('passwords')
