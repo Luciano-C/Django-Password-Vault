@@ -111,7 +111,7 @@ def create_password(request):
 @login_required 
 def search_passwords_name(request):
     if request.GET['search_by_name'] != "":
-        user_passwords = PasswordInfo.objects.filter(user=request.user).filter(name__contains=request.GET['search_by_name'])
+        user_passwords = PasswordInfo.objects.filter(user=request.user).filter(name__icontains=request.GET['search_by_name'])
         return render(request, 'passwords.html', {
             'user_passwords': user_passwords,
             'value_name': request.GET['search_by_name']
@@ -122,7 +122,7 @@ def search_passwords_name(request):
 @login_required 
 def search_passwords_type(request):
     if request.GET['search_by_type'] != "":
-        user_passwords = PasswordInfo.objects.filter(user=request.user).filter(type_of_password__contains=request.GET['search_by_type'])
+        user_passwords = PasswordInfo.objects.filter(user=request.user).filter(type_of_password__icontains=request.GET['search_by_type'])
         return render(request, 'passwords.html', {
             'user_passwords': user_passwords,
             'value_type': request.GET['search_by_type']

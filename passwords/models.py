@@ -5,9 +5,9 @@ from django import forms
 # Create your models here.
 class PasswordInfo(models.Model):
     name = models.CharField(max_length=100)
-    address = models.CharField(max_length=250)
-    user_or_email = models.CharField(max_length=100)
-    password = models.CharField(max_length=200)
+    address = models.CharField(max_length=250, blank=True)
+    user_or_email = models.CharField(max_length=100, blank=True)
+    password = models.CharField(max_length=200, blank=True)
     additional_notes = models.TextField(blank=True)
     type_of_password = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
