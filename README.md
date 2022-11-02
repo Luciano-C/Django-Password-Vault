@@ -37,10 +37,8 @@ DATABASES = {
     'default': dj_database_url.config(default=f"mysql://{os.environ.get('DB_USER')}:{os.environ.get('MYSQL_ROOT_PASSWORD')}@{os.environ.get('DB_HOST')}:{os.environ.get('DB_PORT')}/{os.environ.get('MYSQL_DATABASE')}")
 } 
 <br>
+<br>
 In my case I wanted to keep them separated this time so I could keep better track of which environment variables were needed for the Django app and which for Docker.
-
-
-
 
 ### <ins>Commands on terminal</ins>
 \$ sudo docker compose up ($ sudo docker compose up --build)
