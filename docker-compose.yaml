@@ -1,18 +1,6 @@
 version: '3.9'
 services:
   
-  password-vault-app:
-    build: .
-    container_name: password-vault-image
-    ports:
-      - 8000:8000
-    depends_on:
-      - db
-    env_file: .env
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - /tmp/password_vault/mysqld:/var/run/mysqld
-  
   db:
     image: mysql
     container_name: passwordvaultdb
@@ -20,10 +8,21 @@ services:
       - 3306:3306
     env_file: .env
     volumes:
-      - /tmp/password_vault/mysqld:/var/run/mysqld
+      - password-vault-data:/var/lib/mysql
     restart: always
 
 
+  password-vault-app:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    container_name: password-vault
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    env_file: .env
+    
+    
 
 
 volumes:
