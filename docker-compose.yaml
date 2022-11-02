@@ -10,7 +10,7 @@ services:
     volumes:
       - password-vault-data:/var/lib/mysql
     restart: always
-
+    
 
   password-vault-app:
     build: .
@@ -22,9 +22,6 @@ services:
       - db
     env_file: .env
     
-    
-
-
 volumes:
   password-vault-data:
     driver: local
