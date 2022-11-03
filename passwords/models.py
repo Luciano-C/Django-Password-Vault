@@ -1,6 +1,6 @@
 from django.db import models
 from authuser.models import User
-from django import forms
+
 
 # Create your models here.
 class PasswordInfo(models.Model):
