@@ -1,4 +1,3 @@
-from webbrowser import get
 from django.db import IntegrityError
 from django.shortcuts import render, redirect, get_object_or_404
 from authuser.models import User
