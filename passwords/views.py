@@ -27,10 +27,6 @@ def signin(request):
             login(request, user)
             return redirect('passwords') 
 
-
-
-
-
 def signup(request):
     if request.method == "GET":
         return render(request, 'signup.html')
